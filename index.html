@@ -15,6 +15,7 @@
   color-scheme: light dark;
   --bg:#EDF0F3; --panel:#FFFFFF; --soft:#F3F5F8; --ink:#16202B; --muted:#5B6B7B; --line:#D3DAE1;
   --str:#2447D6; --car:#0B8F80; --meal:#B86E00; --pr:#9A6B00; --danger:#B83232; --on:#FFFFFF;
+  --btn-str:#2447D6; --btn-car:#0A7A6D; --btn-meal:#9A5C00; --btn-plain:#16202B;
   --good:#0B7F5B; --good-bg:#DDF3EA; --ok:#8A5A00; --ok-bg:#FBEBD0; --bad:#B83232; --bad-bg:#F9DEDE;
   --font:"Hiragino Kaku Gothic ProN","Hiragino Sans","BIZ UDPGothic","Yu Gothic UI","Noto Sans JP","Meiryo",system-ui,sans-serif;
   --numfont:"Bahnschrift","DIN Alternate","Arial Narrow","Helvetica Neue",Arial,sans-serif;
@@ -22,14 +23,18 @@
 }
 @media (prefers-color-scheme: dark){
   :root{
-    --bg:#0F161D; --panel:#18222C; --soft:#1F2B36; --ink:#E7EDF3; --muted:#93A3B3; --line:#2B3946;
-    --str:#8AA2FF; --car:#3CCDB9; --meal:#F0A93B; --pr:#E8C15A; --danger:#FF8585; --on:#0F161D;
+    --bg:#0F161D; --panel:#18222C; --soft:#1F2B36; --ink:#EEF2F6; --muted:#A9B6C3; --line:#34444F;
+    --str:#8AA2FF; --car:#3CCDB9; --meal:#F0A93B; --pr:#E8C15A; --danger:#FF8585;
+    --btn-str:#3F5FE0; --btn-car:#0E7C70; --btn-meal:#A35F00; --btn-plain:#3A4B5C;
     --good:#5FDDB0; --good-bg:#12352B; --ok:#F0C46A; --ok-bg:#3A2D10; --bad:#FF9A9A; --bad-bg:#3D1C1C;
   }
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--font);touch-action:manipulation}
+button,input,select,textarea,summary,details,label,h2,h3,b{color:var(--ink)}
+option{background:var(--panel);color:var(--ink)}
+::placeholder{color:var(--muted);opacity:1}
 .wrap{max-width:560px;margin:0 auto;padding:0 12px calc(86px + var(--sa-b))}
 .num{font-family:var(--numfont);font-variant-numeric:tabular-nums;font-weight:600}
 .sub{color:var(--muted);font-size:13px}
@@ -42,14 +47,14 @@ h1,h2,h3,p{margin:0}
 .dlabel{position:relative;flex:1;text-align:center;font-size:18px;font-weight:800;min-height:44px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:var(--panel);border:1px solid var(--line)}
 .dlabel input{position:absolute;inset:0;width:100%;height:100%;opacity:0;font-size:16px}
 .nb{min-width:44px;min-height:44px;font:inherit;font-size:22px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:8px;cursor:pointer}
-.todaybtn{min-height:44px;font:inherit;font-size:13px;font-weight:700;border:1px solid var(--ink);background:var(--ink);color:var(--bg);border-radius:8px;padding:0 10px;cursor:pointer}
+.todaybtn{min-height:44px;font:inherit;font-size:13px;font-weight:700;border:1px solid var(--btn-plain);background:var(--btn-plain);color:#fff;border-radius:8px;padding:0 10px;cursor:pointer}
 
 /* ボタン類 */
 .btn{font:inherit;font-size:15px;cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:0 14px;min-height:44px;border-radius:8px}
 .btn.sm{min-height:36px;padding:0 10px;font-size:13px;color:var(--muted)}
 .btn.go{color:var(--on);border-color:transparent;font-weight:700}
-.str .btn.go{background:var(--str)} .car .btn.go{background:var(--car)} .meal .btn.go{background:var(--meal)}
-.btn.go.plain{background:var(--ink)}
+.str .btn.go{background:var(--btn-str)} .car .btn.go{background:var(--btn-car)} .meal .btn.go{background:var(--btn-meal)}
+.btn.go.plain{background:var(--btn-plain)}
 .btn.wide{width:100%}
 .btn.danger{color:var(--danger);border-color:var(--danger)}
 
@@ -81,8 +86,8 @@ nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;display:grid;grid-tem
 .seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel)}
 .seg button{font:inherit;font-size:14px;font-weight:700;border:0;border-left:1px solid var(--line);background:var(--panel);color:var(--muted);min-height:44px;cursor:pointer}
 .seg button:first-child{border-left:0}
-.seg button.on{background:var(--ink);color:var(--bg)}
-.seg.meal button.on{background:var(--meal);color:var(--on)}
+.seg button.on{background:var(--btn-plain);color:#fff}
+.seg.meal button.on{background:var(--btn-meal);color:#fff}
 
 /* フォーム */
 .form{margin-top:10px}
@@ -91,6 +96,8 @@ nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;display:grid;grid-tem
 label.f{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--muted);min-width:0}
 input,select,textarea{font:inherit;font-size:16px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:0 10px;min-height:44px;min-width:0;width:100%}
 textarea{padding:8px 10px;min-height:88px;font-size:14px}
+input[type=search],input[type=number],textarea{-webkit-appearance:none;appearance:none}
+select{-webkit-appearance:none;appearance:none;padding-right:30px;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat}
 .stp{display:flex}
 .stp input{text-align:center;border-radius:0;border-left:0;border-right:0;padding:0 2px}
 .sb{min-width:44px;min-height:44px;font:inherit;font-size:20px;cursor:pointer;border:1px solid var(--line);background:var(--soft);color:var(--ink)}
@@ -116,7 +123,7 @@ ol.sets .x{border:0;background:none;color:var(--muted);cursor:pointer;font-size:
 .slot{font-size:14px;font-weight:700;color:var(--meal);margin-top:10px}
 .chips{display:flex;gap:6px;overflow-x:auto;padding:8px 0 4px;-webkit-overflow-scrolling:touch}
 .chip{flex:none;font:inherit;font-size:14px;font-weight:600;cursor:pointer;border:1px solid var(--line);background:var(--soft);color:var(--ink);padding:0 14px;min-height:38px;border-radius:999px}
-.chip.on{background:var(--meal);border-color:var(--meal);color:var(--on)}
+.chip.on{background:var(--btn-meal);border-color:var(--btn-meal);color:#fff}
 .frow{display:flex;width:100%;align-items:center;gap:8px;text-align:left;font:inherit;cursor:pointer;background:none;color:var(--ink);border:0;border-top:1px solid var(--line);padding:10px 2px;min-height:52px}
 .frow .fn{flex:1;min-width:0}
 .frow .fs{font-size:12px;color:var(--muted);text-align:right}
@@ -165,7 +172,7 @@ table.sum thead th{border-top:0;color:var(--muted);font-size:12px}
 .sheetbox{background:var(--panel);width:100%;max-width:560px;max-height:88vh;overflow:auto;border-radius:16px 16px 0 0;padding:16px 16px calc(16px + var(--sa-b))}
 .sheetbox h3{font-size:18px}
 
-#toast{position:fixed;left:50%;bottom:calc(74px + var(--sa-b));transform:translateX(-50%) translateY(16px);max-width:90vw;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:8px;opacity:0;transition:.2s;pointer-events:none;font-size:14px;z-index:40;text-align:center}
+#toast{position:fixed;left:50%;bottom:calc(74px + var(--sa-b));transform:translateX(-50%) translateY(16px);max-width:90vw;background:var(--btn-plain);color:#fff;padding:10px 16px;border-radius:8px;opacity:0;transition:.2s;pointer-events:none;font-size:14px;z-index:40;text-align:center}
 #toast.on{opacity:1;transform:translateX(-50%)}
 @media (prefers-reduced-motion:reduce){#toast{transition:none}}
 </style>
@@ -309,7 +316,7 @@ function newState(){return {v:2,settings:{...SETTINGS_DEF},profile:{...PROFILE_D
 const today=fmtDate(new Date());
 let cur=today, tab='summary', range=7, chartEx='', mealSlot=null, foodCat=null, foodQ='', pick=null;
 let storageMode='memory', armedKey=null, focusAfter=null, wkeys=null;
-const EMPTY={weight:null,stMin:null,strength:[],cardio:[],meals:[]};
+const EMPTY={weight:null,bf:null,mm:null,vf:null,stMin:null,strength:[],cardio:[],meals:[]};
 
 function normalize(d){
   const n=newState();
@@ -321,7 +328,7 @@ function normalize(d){
   n.customFoods=Array.isArray(d.customFoods)?d.customFoods:[];
   Object.keys(d.days||{}).forEach(k=>{
     const x=d.days[k]||{};
-    n.days[k]={weight:x.weight??null,stMin:x.stMin??null,strength:x.strength||[],cardio:x.cardio||[],meals:x.meals||[]};
+    n.days[k]={weight:x.weight??null,bf:x.bf??null,mm:x.mm??null,vf:x.vf??null,stMin:x.stMin??null,strength:x.strength||[],cardio:x.cardio||[],meals:x.meals||[]};
   });
   return n;
 }
@@ -352,7 +359,7 @@ function save(){
 const D=(date,create=false)=>{
   if(!S.days[date]){
     if(!create)return EMPTY;
-    S.days[date]={weight:null,stMin:null,strength:[],cardio:[],meals:[]};
+    S.days[date]={weight:null,bf:null,mm:null,vf:null,stMin:null,strength:[],cardio:[],meals:[]};
   }
   return S.days[date];
 };
@@ -386,7 +393,7 @@ function dayStats(date){
   const cKcal=d.cardio.reduce((a,c)=>a+cardioKcal(c,date),0);
   const cKm=d.cardio.reduce((a,c)=>a+(c.km||0),0);
   const m=d.meals.reduce((a,x)=>({kcal:a.kcal+x.kcal,p:a.p+x.p,f:a.f+x.f,c:a.c+x.c}),{kcal:0,p:0,f:0,c:0});
-  return {vol,nsets,nex:d.strength.length,stMin,stK,cMin,cKcal,cKm,m,weight:d.weight,
+  return {vol,nsets,nex:d.strength.length,stMin,stK,cMin,cKcal,cKm,m,weight:d.weight,bf:d.bf??null,mm:d.mm??null,vf:d.vf??null,
           trained:nsets>0,cardio:cMin>0,meals:d.meals.length>0};
 }
 // 1日の消費・目標・収支
@@ -546,6 +553,22 @@ function evaluate(rows,ag,prev){
           :'体重の変動が維持の範囲を超えています。');
       }
     }else add('体重の変化','–','na','体重を4日以上あけて2回以上記録すると評価できます');
+    const comp=key=>{const r=rows.filter(x=>x[key]!=null);if(r.length<2)return null;const a=r[0],b=r[r.length-1];return daysBetween(a.date,b.date)>=4?{a,b,wk:daysBetween(a.date,b.date)/7}:null};
+    const fc=comp('bf'),mc=comp('mm');
+    const mD=mc?mc.b.mm-mc.a.mm:null;
+    if(fc){
+      const fD=fc.b.w*fc.b.bf/100-fc.a.w*fc.a.bf/100;
+      const lvlF=ph==='cut'?(fD<0?'good':'ok'):ph==='bulk'?((mD!=null?fD<=Math.max(mD,0)+0.2:fD/fc.wk<=0.25)?'good':'ok'):(Math.abs(fD)<=0.5?'good':'ok');
+      add('体脂肪量の変化',`${sg(fD,1)} kg`,lvlF,`体脂肪率 ${fmt(fc.a.bf,1)} → ${fmt(fc.b.bf,1)}%（体組成計の値は水分量で変わるため目安）`);
+      if(lvlF!=='good'&&ph==='bulk')advice.push('体脂肪の増えが筋肉量より大きめです。余剰を100〜200kcal/日 減らすことを検討しましょう。');
+      if(lvlF!=='good'&&ph==='cut')advice.push('体脂肪量が減っていません。2週間ほど続けても同じなら、収支の目標を少し厳しくしましょう。');
+    }
+    if(mc){
+      const lvlM=ph==='cut'?(mD>=-0.3?'good':mD>=-1?'ok':'bad'):ph==='bulk'?(mD>0?'good':'ok'):(mD>=-0.3?'good':'ok');
+      add('筋肉量の変化',`${sg(mD,1)} kg`,lvlM,`${fmt(mc.a.mm,1)} → ${fmt(mc.b.mm,1)} kg`);
+      if(lvlM!=='good'&&ph==='cut')advice.push('筋肉量が減り気味です。たんぱく質を確保し、扱う重量を落とさないことを意識しましょう。減量ペースが速いときは収支をゆるめましょう。');
+      if(lvlM!=='good'&&ph==='bulk')advice.push('筋肉量が増えていません。ボリューム（セット数・重量）を少しずつ増やせているか確認しましょう。');
+    }
     if(ag.nl>0)add('理論上の体重変化',`${sg(ag.bal*n/7200,1)} kg`,'na','平均収支×日数÷7,200kcal（体脂肪1kg相当）');
   }
 
@@ -651,16 +674,24 @@ function viewSummary(){
   const startD=rows[0].date;
   const periodLabel=n===1?`${md(cur)}`:`${md(startD)}〜${md(cur)}（${n}日間）`;
 
-  // 体重カード（1日表示のときのみ）
-  const prevW=(()=>{const ks=Object.keys(S.days).filter(k=>k<cur&&S.days[k].weight).sort();return ks.length?{date:ks[ks.length-1],w:S.days[ks[ks.length-1]].weight}:null})();
+  // 体重・体組成カード（1日表示のときのみ）
+  const prevOf=key=>{const ks=Object.keys(S.days).filter(k=>k<cur&&S.days[k][key]!=null).sort();return ks.length?{date:ks[ks.length-1],v:S.days[ks[ks.length-1]][key]}:null};
+  const dlt=(key,u)=>{const v=D(cur)[key],p=prevOf(key);return v!=null&&p?`<span class="sub">前回(${md(p.date)})比 ${sg(v-p.v,1)}${u}</span>`:''};
+  const bw=last.weight,hm=S.profile.height/100;
+  const bmi=bw?bw/(hm*hm):null,fatKg=bw&&last.bf!=null?bw*last.bf/100:null,lbm=fatKg!=null?bw-fatKg:null;
   const wcard=n===1?`
     <section class="panel">
-      <h2>体重</h2>
-      <div class="grid2f" data-form style="align-items:end">
-        <label class="f">${md(cur)}の体重（kg）<input type="number" name="weight" step="0.1" inputmode="decimal" value="${last.weight??''}"></label>
-        <button class="btn go plain" data-act="saveWeight">保存</button>
+      <h2>体重・体組成</h2>
+      <div class="grid2f" data-form>
+        <label class="f">体重（kg）<input type="number" name="weight" step="0.1" inputmode="decimal" value="${last.weight??''}">${dlt('weight','kg')}</label>
+        <label class="f">体脂肪率（%）<input type="number" name="bf" step="0.1" inputmode="decimal" value="${last.bf??''}">${dlt('bf','%')}</label>
+        <label class="f">筋肉量（kg）<input type="number" name="mm" step="0.1" inputmode="decimal" value="${last.mm??''}">${dlt('mm','kg')}</label>
+        <label class="f">内臓脂肪レベル<input type="number" name="vf" step="0.5" inputmode="decimal" value="${last.vf??''}">${dlt('vf','')}</label>
+        <button class="btn go plain" data-act="saveBody" style="grid-column:1/-1">保存</button>
       </div>
-      <p class="sub" style="margin-top:6px">${last.weight?(prevW?`前回（${md(prevW.date)}）比 ${sg(last.weight-prevW.w,1)} kg`:'記録済み'):`未記録（推定には ${fmt(bodyWeightAt(cur),1)} kg を使用）`}</p>
+      ${bw?`<div class="kv" style="margin-top:8px"><span>BMI（身長${S.profile.height}cmで自動計算）</span><b class="num">${fmt(bmi,1)}</b></div>`:''}
+      ${fatKg!=null?`<div class="kv"><span>体脂肪量</span><b class="num">${fmt(fatKg,1)} kg</b></div><div class="kv"><span>除脂肪体重（体脂肪以外の重さ）</span><b class="num">${fmt(lbm,1)} kg</b></div>`:''}
+      <p class="sub" style="margin-top:6px">${bw?'':`体重が未記録のため、計算には ${fmt(bodyWeightAt(cur),1)} kg を使用しています。`}体重以外は空欄でも保存できます。毎回同じ条件（朝・トイレ後など）で測ると比較しやすくなります。</p>
     </section>`:'';
 
   // 内訳
@@ -707,6 +738,8 @@ function viewSummary(){
     <details open><summary>グラフ</summary><div class="dpanel">
       <h2 style="font-size:14px;margin-top:10px">日別の収支（kcal）　上＝余剰／下＝不足</h2>${divChart({vals:rows.map(r=>r.balance),labels,target:ag.tbal,title:'日別のカロリー収支'})}
       <h2 style="font-size:14px;margin-top:14px">体重（kg）</h2>${lineChart({vals:rows.map(r=>r.weight),labels,color:'ink',unit:' kg',title:'体重の推移'})}
+      ${rows.some(r=>r.bf!=null)?`<h2 style="font-size:14px;margin-top:14px">体脂肪率（%）</h2>${lineChart({vals:rows.map(r=>r.bf),labels,color:'meal',unit:' %',title:'体脂肪率の推移'})}`:''}
+      ${rows.some(r=>r.mm!=null)?`<h2 style="font-size:14px;margin-top:14px">筋肉量（kg）</h2>${lineChart({vals:rows.map(r=>r.mm),labels,color:'str',unit:' kg',title:'筋肉量の推移'})}`:''}
     </div></details>
     <details><summary>その他のグラフ</summary><div class="dpanel">
       <h2 style="font-size:14px;margin-top:10px">たんぱく質（g）</h2>${barChart({vals:rows.map(r=>r.logged?r.m.p:null),labels,color:'meal',target:ag.pt,unit:' g',title:'日別のたんぱく質'})}
@@ -971,7 +1004,7 @@ function renderSheet(){
     <div style="margin:12px 0 4px"><label class="f">${each?'数量（'+esc(f.unit)+'の何倍か）':'量（g）'}
       <div class="stp"><button class="sb" data-act="step" data-d="${each?-0.5:-10}" aria-label="減らす">−</button><input id="amt" type="number" min="0" step="${each?0.5:1}" inputmode="decimal" value="${pick.amt}" data-live="1"><button class="sb" data-act="step" data-d="${each?0.5:10}" aria-label="増やす">＋</button></div></label></div>
     <div id="calc" style="margin:12px 0"></div>
-    <button class="btn go wide" style="background:var(--meal)" data-act="addFood">${mealSlot}に追加</button>
+    <button class="btn go wide" style="background:var(--btn-meal)" data-act="addFood">${mealSlot}に追加</button>
   </div></div>`;
   updateCalc();
 }
@@ -1024,6 +1057,7 @@ function viewSettings(){
     ・筋トレ：METS ${STR_MET}の上乗せ分(MET−1)×体重×時間。時間は入力値、なければセット数×${STR_MIN_PER_SET}分<br>
     ・有酸素：種類別METの上乗せ分(MET−1)×体重×時間×1.05。消費kcalを手入力した場合はその値を優先<br>
     ・収支＝摂取−消費。体脂肪1kg≒7,200kcalで理論値を算出<br>
+    ・BMI＝体重÷身長(m)²、体脂肪量＝体重×体脂肪率、除脂肪体重＝体重−体脂肪量<br>
     ・体重は記録がある最新の値（なければ初期値）を使用。個人差があるため、体重の実測と合わせて調整してください
   </div></div></details>
 
@@ -1090,9 +1124,11 @@ const acts={
     inp.dispatchEvent(new Event('input',{bubbles:true}));
     return false;
   },
-  saveWeight(el){
-    const w=num(fval(el.closest('[data-form]'),'weight'));
-    D(cur,true).weight=w&&w>0?w:null;toast(w?'体重を保存しました':'体重の記録を消しました');
+  saveBody(el){
+    const f=el.closest('[data-form]'),d=D(cur,true);
+    const g=n=>{const v=num(fval(f,n));return v!=null&&v>0?v:null};
+    d.weight=g('weight');d.bf=g('bf');d.mm=g('mm');d.vf=g('vf');
+    toast('体重・体組成を保存しました');
   },
   addEx(el){
     const name=fval(el.closest('[data-form]'),'name').trim();
